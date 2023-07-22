@@ -1,17 +1,33 @@
 public class Solution
 {
-    public bool IsAnagram(string s, string t)//Another solution
+    public bool IsAnagram(string s, string t)
     {
         if (s.Length != t.Length) return false;
 
-        var hash_S = s.ToHashSet();
+        var dictionary_Of_S = new Dictionary<char, int>();
 
-        foreach (var i in t){
-            if (!hash_S.Contains(i)){
-                return false;
+        foreach (var letter in s)
+        {
+            if (dictionary_Of_S.ContainsKey(letter)){
+                dictionary_Of_S[letter]++;
+            }
+            else {
+                dictionary_Of_S.Add(letter, 1);
             }
         }
-        return true;
+
+        foreach (var letter in t)
+        {
+            if (dictionary_Of_S.ContainsKey(letter)){
+                dictionary_Of_S[letter]--;
+                if (dictionary_Of_S[letter] == 0){
+                    dictionary_Of_S.Remove(letter);
+                }
+            }
+            else {
+                return false;}
+        }
+        return dictionary_Of_S.Count == 0;
     }
 
 }
