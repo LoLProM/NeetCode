@@ -1,18 +1,21 @@
 public class Solution
 {
-    public int[] TwoSum(int[] nums, int target)
-    {
-
-        for (int i = 0; i < nums.Length - 1; i++)
-        {
-            for (int j = i + 1; j < nums.Length; j++)
-            {
-                if (nums[i] + nums[j] == target)
-                {
-                    return new int[] { i, j };
-                }
+    public int[] TwoSum(int[] nums, int target){
+        Array.Sort(nums);
+        int left = 0;
+        int right = nums.Length - 1;
+        while (left < right){
+            int sum = nums[left] + nums[right];
+            if (sum == target){
+                return new int[] { left, right };
+            }
+            if (sum > target){
+                right--;
+            }
+            if (sum < target){
+                left++;
             }
         }
-        throw new NotImplementedException("Cannot find target");
+        throw new NotImplementedException("Pairs not found");
     }
 }
