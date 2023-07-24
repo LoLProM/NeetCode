@@ -6,7 +6,7 @@ public class Solution
 
         foreach (var word in strs)
         {
-            var sortedWord = SortWord(word);
+            var sortedWord = string.Concat(word.OrderBy(c => c));
             if (!dictionary_Of_Anagrams.ContainsKey(sortedWord))
             {
                 dictionary_Of_Anagrams[sortedWord] = new List<string>();
@@ -14,17 +14,5 @@ public class Solution
             dictionary_Of_Anagrams[sortedWord].Add(word);
         }
         return dictionary_Of_Anagrams.Values.ToList();
-    }
-
-    private string SortWord(string word)
-    {
-        char[] chars_In_Word = word.ToCharArray();
-        Array.Sort(chars_In_Word);
-        string result = "";
-        foreach (char c in chars_In_Word)
-        {
-            result += c;
-        }
-        return result;
     }
 }
