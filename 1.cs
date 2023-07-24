@@ -1,23 +1,18 @@
 public class Solution
 {
     public int[] TwoSum(int[] nums, int target){
-        int[] indexArray = Enumerable.Range(0, nums.Length).ToArray();
-        Array.Sort(nums, indexArray);
+        
+        var dictionary_Of_Nums = new Dictionary<int, int>();
 
-        int left = 0;
-        int right = nums.Length - 1;
-        while (left < right){
-            int sum = nums[left] + nums[right];
-            if (sum == target){
-                return new int[] { indexArray[left], indexArray[right] };
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int diference = target - nums[i];
+            if (dictionary_Of_Nums.ContainsKey(nums[i]))
+            {
+                return new int[] { dictionary_Of_Nums[nums[i]], i };
             }
-            if (sum > target){
-                right--;
-            }
-            if (sum < target){
-                left++;
-            }
+            dictionary_Of_Nums.Add(diference,i);
         }
-        throw new NotImplementedException("Pairs not found");
+        throw new NotImplementedException("Pair not found");
     }
 }
