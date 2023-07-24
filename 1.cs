@@ -11,7 +11,7 @@ public class Solution
             {
                 return new int[] { dictionary_Of_Nums[nums[i]], i };
             }
-            dictionary_Of_Nums.Add(diference,i);
+            dictionary_Of_Nums[diference] = i;
         }
         throw new NotImplementedException("Pair not found");
     }
