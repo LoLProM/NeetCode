@@ -1,17 +1,20 @@
 public class Solution
 {
-    public IList<IList<string>> GroupAnagrams(string[] strs)
-    {
+    public IList<IList<string>> GroupAnagrams(string[] strs){        
         var dictionary_Of_Anagrams = new Dictionary<string, IList<string>>();
 
-        foreach (var word in strs)
-        {
-            var sortedWord = string.Concat(word.OrderBy(c => c));
-            if (!dictionary_Of_Anagrams.ContainsKey(sortedWord))
+        foreach (var word in strs){
+            char[] alfabet = new char[26];
+            for (int i = 0; i < word.Length; i++)
             {
-                dictionary_Of_Anagrams[sortedWord] = new List<string>();
+                char c = word[i];
+                alfabet[c - 'a']++;
             }
-            dictionary_Of_Anagrams[sortedWord].Add(word);
+            string key = new string(alfabet);
+            if (!dictionary_Of_Anagrams.ContainsKey(key)){
+                dictionary_Of_Anagrams[key] = new List<string>();
+            }
+            dictionary_Of_Anagrams[key].Add(word);
         }
         return dictionary_Of_Anagrams.Values.ToList();
     }
